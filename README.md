@@ -10,7 +10,7 @@ python main.py -h
 ```
 
 Required Arguments:
-- (-u): user ID from the .Amber.license file associated with your license (lessly-peraton or the key tied to this ID)
+- (-u): user ID from the .Amber.license file associated with your license (the key tied to the tenant ID)
 - (-d): directory path relative to currect directory
 - (-s): sensor ID
 - (-t): threshold for NI classification (700)
