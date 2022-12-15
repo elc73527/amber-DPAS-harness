@@ -5,6 +5,7 @@ import os
 import sys
 import csv
 import numpy as np
+from datetime import datetime
 from color_class import bcolors
 from print_functions import print_summary
 from print_functions import print_confusion_matrix as print_cm
@@ -52,6 +53,8 @@ class amber_DPAS:
 		print("\n***************************")
 		print(f"{bcolors.HEADER}{file}{bcolors.ENDC}")
 
+		start = datetime.now()
+
 		# get data from file
 		print("Loading data....", flush=True, end="\r")
 		with open(os.path.join(self.directory, file), 'r') as f:
@@ -80,6 +83,9 @@ class amber_DPAS:
 		# average NI
 		avg = round(np.mean(results['NI']), 2)
 		print("average: {}       ".format(avg))
+
+		dur = datetime.now() - start
+		print("time duration: {}".format(dur))
 
 		# classify csv
 		is_compliant = False if avg >= self.threshold else True
