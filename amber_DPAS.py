@@ -4,6 +4,7 @@ import boonamber
 import os
 import sys
 import csv
+import time
 import numpy as np
 from datetime import datetime
 from color_class import bcolors
@@ -77,6 +78,7 @@ class amber_DPAS:
 			results = self.amber.stream_sensor(self.sensor_id, data, save_image=False)
 		except Exception as e:
 			print(f"{bcolors.FAIL}{e}{bcolors.ENDC}")
+			time.sleep(5)
 			return
 
 		# average NI

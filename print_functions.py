@@ -11,8 +11,8 @@ def print_summary(total_files, tp, fp, tn, fn):
 
 def print_confusion_matrix(tp, fp, tn, fn):
 	total_count = len(fn) + len(tn) + len(fp) + len(tp)
-	total_compliant = len(fp) + len(tn)
-	total_defect = len(tp) + len(fn)
+	total_compliant = len(fp) + len(tn) if len(fp) + len(tn) != 0 else 1
+	total_defect = len(tp) + len(fn) if len(tp) + len(fn) != 0 else 1
 
 	print("-----------------------------------------------")
 	print(f"|//////////////| {bcolors.BOLD}Boon Compliant{bcolors.ENDC} | {bcolors.BOLD}Boon Defect{bcolors.ENDC} |")
