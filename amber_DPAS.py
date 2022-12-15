@@ -77,7 +77,7 @@ class amber_DPAS:
 			results = self.amber.stream_sensor(self.sensor_id, data, save_image=False)
 		except Exception as e:
 			print(f"{bcolors.FAIL}{e}{bcolors.ENDC}")
-			continue
+			return
 
 		# average NI
 		avg = round(np.mean(results['NI']), 2)
