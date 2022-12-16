@@ -34,7 +34,7 @@ class amber_DPAS:
 		self.fn = []
 		self.tn = []
 
-		self.amber = boonamber.AmberClient(license_file="~/.Amber.license", license_id=self.user)
+		self.amber = boonamber.AmberClient(license_file="~/.Amber.license", license_id=self.user, verify=False)
 
 	def process_directory(self):
 
