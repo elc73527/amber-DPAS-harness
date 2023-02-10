@@ -81,30 +81,17 @@ class amber_DPAS:
 			print("Too little data: {} rows".format(len(data)))
 			return
 
-		data = [data[i:i + 2500] for i in range(0, len(data), 2500)]
-
 		# stream data
 		print("Streaming data....", flush=True, end="\r")
 		try:
-			response = []
-			results = {}
-			for chunk in data:
-				response.append(self.amber.stream_sensor(self.sensor_id, chunk, save_image=False))
-			for analytic in ['AD', 'SI', 'RI', 'ID', 'AH', 'NI', 'AW', 'NS', 'NW','OM']:
-				list_to_flatten = [chunk[analytic] for chunk in response]
-				results[analytic] = [item for sublist in list_to_flatten for item in sublist]
+			results = self.amber.stream_sensor(self.sensor_id, data, save_image=False)
 		except Exception as e:
 			print(f"{bcolors.FAIL}{e}{bcolors.ENDC}")
 			time.sleep(5)
 			return
 
 		# average NI
-		avg = [round(np.mean(results['NI'][i-self.min_count:i-1]), 2) for i in range(self.min_count, len(results['NI'])+1)]
-		avg = np.amax(avg)
-		# t1=datetime.now()
-		# print(self.amber.get_root_cause(self.sensor_id, id_list=results['ID'][:50]))
-		# print(datetime.now() - t1)
-		# avg = round(np.mean(results['NI']), 2)
+		avg = round(np.mean(results['NI']), 2)
 		print("average: {}       ".format(avg))
 
 		dur = datetime.now() - start

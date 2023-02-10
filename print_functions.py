@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import math
 from color_class import bcolors
 
 def print_summary(total_files, tp, fp, tn, fn):
@@ -19,14 +20,14 @@ def print_confusion_matrix(tp, fp, tn, fn):
 	print("-----------------------------------------------")
 
 	print(f"| {bcolors.BOLD}GT Compliant{bcolors.ENDC} |", flush=True, end="")
-	print(f"{bcolors.OKGREEN}{str(int(len(tn) / total_compliant * 100)) + '%':^16}{bcolors.ENDC}", flush=True, end="")
+	print(f"{bcolors.OKGREEN}{str(int(math.ceil(len(tn) / total_compliant * 100))) + '%':^16}{bcolors.ENDC}", flush=True, end="")
 	print(f"|", flush=True, end="")
-	print(f"{bcolors.FAIL}{str(int(len(fp) / total_compliant * 100)) + '%':^13}{bcolors.ENDC}", flush=True, end="")
+	print(f"{bcolors.FAIL}{str(int(math.ceil(len(fp) / total_compliant * 100))) + '%':^13}{bcolors.ENDC}", flush=True, end="")
 	print("|")
 
 	print(f"|  {bcolors.BOLD}GT Defect{bcolors.ENDC}   |", flush=True, end="")
-	print(f"{bcolors.FAIL}{str(int(len(fn) / total_defect * 100)) + '%':^16}{bcolors.ENDC}", flush=True, end="")
+	print(f"{bcolors.FAIL}{str(int(math.ceil(len(fn) / total_defect * 100))) + '%':^16}{bcolors.ENDC}", flush=True, end="")
 	print("|", flush=True, end="")
-	print(f"{bcolors.OKGREEN}{str(int(len(tp) / total_defect * 100)) + '%':^13}{bcolors.ENDC}", flush=True, end="")
+	print(f"{bcolors.OKGREEN}{str(int(math.ceil(len(tp) / total_defect * 100))) + '%':^13}{bcolors.ENDC}", flush=True, end="")
 	print(f"|")
 	print("-----------------------------------------------")
